@@ -1,0 +1,15 @@
+rules:
+- id: missing-csp-header
+  message: "Missing Content-Security-Policy Header"
+  severity: WARNING
+  languages: [javascript]
+  patterns:
+    - pattern-not: |
+        app.use((req, res, next) => {
+          ... 
+          res.setHeader("Content-Security-Policy", $POLICY);
+          ...
+          next();
+        });
+    - pattern: |
+        app.use(...)

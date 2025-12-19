@@ -1,0 +1,14 @@
+rules:
+- id: user-enumeration
+  message: "Possible User Enumeration — unify login error messages"
+  severity: MEDIUM
+  languages: [javascript]
+  patterns:
+    - pattern: |
+        if ($COND) {
+          return res.status($S).json({$MSG});
+        }
+    - pattern-either:
+        - pattern: return res.status(404)
+        - pattern: return res.status(401)
+        - pattern: return res.status(400)

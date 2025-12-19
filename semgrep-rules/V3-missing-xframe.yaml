@@ -1,0 +1,10 @@
+rules:
+- id: missing-x-frame
+  message: "Missing X-Frame-Options Header — Clickjacking risk"
+  severity: WARNING
+  languages: [javascript]
+  patterns:
+    - pattern-not: |
+        res.setHeader("X-Frame-Options", "DENY");
+    - pattern: |
+        app.use(...)

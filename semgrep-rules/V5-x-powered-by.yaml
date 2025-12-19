@@ -1,0 +1,10 @@
+rules:
+- id: x-powered-by-leak
+  message: "X-Powered-By header leaks technology info"
+  severity: WARNING
+  languages: [javascript]
+  patterns:
+    - pattern-not: |
+        app.disable("x-powered-by");
+    - pattern: |
+        const express = require('express')
